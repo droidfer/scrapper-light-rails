@@ -17,6 +17,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_04_24_205051) do
     t.integer "web_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["web_id"], name: "index_weblinks_on_web_id"
   end
 
   create_table "webs", force: :cascade do |t|

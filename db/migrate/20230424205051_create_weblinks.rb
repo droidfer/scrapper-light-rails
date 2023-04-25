@@ -3,7 +3,7 @@ class CreateWeblinks < ActiveRecord::Migration[7.0]
     create_table :weblinks do |t|
       t.string :name
       t.string :url
-      t.integer :web_id
+      t.belongs_to :web
 
       t.timestamps
     end
