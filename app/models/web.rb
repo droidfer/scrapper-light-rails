@@ -2,6 +2,7 @@ class Web < ApplicationRecord
   has_many :weblinks
   
   validates :url, presence: true
+  validates :url, format: { with: URI::regexp }
   
   def display_name
     return "#{url}" unless finished_at

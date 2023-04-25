@@ -4,6 +4,7 @@ class WebsController < ApplicationController
   
   def index
     @webs = Web.page params[:page]
+    @web = Web.new
   end
 
   def show
@@ -11,30 +12,21 @@ class WebsController < ApplicationController
   end
   
   def create
-    set_url = params['url']
-    
-    unless set_url =~ URI::regexp
-      respond_to do |format|
-        format.html { redirect_to webs_path, notice: "Invalid URL: #{set_url}" }
-      end
-      return
-    end
-    
-    @web = Web.new
-    @web.url = set_url
-
-    respond_to do |format|
+    @web = Web.new(permitted_data_params)
       if @web.save
         ScrapperJob.perform_later(@web.id)
-        format.html { redirect_to webs_path, notice: "Web set in process." }
+        redirect_to webs_path, notice: "Web set in process."
       else
-        format.html { redirect_to webs_path, notice: "Problem in Generation." }
+        redirect_to webs_path, notice: "Problem in Generation." 
       end
-    end
   end
 
   private
     def set_web
       @web = Web.find(params[:id])
     end
+
+  def permitted_data_params
+    params.require(:web).permit(:url)
+  end
 end

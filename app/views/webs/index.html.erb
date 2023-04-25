@@ -2,13 +2,15 @@
 
 <h1>Webs</h1>
 
-<%= form_tag(:controller => 'webs', :action =>'create', :method => 'post') do %>
-  <input
-    name="url" type="string"
-  />
+<%= form_with(model: @web) do |form| %>
+  <div>
+    <%= form.label :name, style: "display: block" %>
+    <%= form.text_field :url %>
+  </div>
   
-  <%= submit_tag 'Scrape' %> <br>
-
+  <div>
+    <%= form.submit "Scrape"%>
+  </div>
 <% end %>
 
 <div id="webs">
