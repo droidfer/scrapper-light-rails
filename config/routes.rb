@@ -1,4 +1,4 @@
 Rails.application.routes.draw do
-  resources :webs
+  resources :webs, only: [:index, :show, :create]
   root "webs#index"
 end
