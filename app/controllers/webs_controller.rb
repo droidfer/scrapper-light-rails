@@ -17,7 +17,7 @@ class WebsController < ApplicationController
         ScrapperJob.perform_later(@web.id)
         redirect_to webs_path, notice: "Web set in process."
       else
-        redirect_to webs_path, notice: "Problem in Generation." 
+        redirect_to webs_path, alert: "This scrapping requirement failed. Please, double check this URL: #{@web.url}" 
       end
   end
 
