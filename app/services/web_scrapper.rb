@@ -11,25 +11,15 @@ class WebScrapper
   def execute
     
     # Fetch and parse HTML document
-    begin
-      doc = Nokogiri::HTML(URI.open(web.url))
-    rescue
-      # This is the case of URI not possible to process with nokogiri
-      web.name = "FAIL: #{web.url}" 
-      web.save
-      return
-    end 
+    doc = Nokogiri::HTML(URI.open(web.url))
     
     # Obtain the Title of the scrapped page
     doc.css('title').each do |title|
       web.name = title.content
     end
     
-    web.save
-    web.reload
-    
     doc.css('a').each do |link|
-      Weblink.create(
+      web.weblinks.create(
         name: link.content,
         url: link.attr('href'),
         web_id: web.id
@@ -41,5 +31,8 @@ class WebScrapper
     web.save
     
   end
-  
+
+rescue
+  # This is the case of URI not possible to process with nokogiri
+  web.update name: "FAIL: #{web.url}"
 end
