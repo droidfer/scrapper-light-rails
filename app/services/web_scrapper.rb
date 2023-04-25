@@ -24,17 +24,17 @@ class WebScrapper
         # Get the first 50 characters of the body of href
         name: name_format(link.content),
         url: link.attr('href'),
-        web_id: web.id
       )
     end
     
     web.total = web.weblinks.count
     web.finished_at = DateTime.now.to_date
+    web.status = :success
     web.save
 
   rescue
     # This is the case of URI not possible to process with nokogiri
-    web.update name: name_format("FAIL: #{web.url}")
+    web.update name: name_format("#{web.url}") , status: :fail, finished_at: DateTime.now.to_date
     
   end
   

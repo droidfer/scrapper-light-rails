@@ -24,6 +24,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_04_24_205051) do
     t.string "url"
     t.date "finished_at"
     t.integer "total"
+    t.integer "status", default: 0
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end

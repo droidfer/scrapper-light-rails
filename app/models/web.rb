@@ -4,6 +4,8 @@ class Web < ApplicationRecord
   validates :url, presence: true
   validates :url, format: { with: URI::regexp }
   
+  enum :status, [ :process, :success, :fail ]
+  
   def display_name
     return "#{url}" unless finished_at
     return "No Title: #{url}" unless name.present? 
@@ -12,6 +14,7 @@ class Web < ApplicationRecord
   
   def display_total
     return "in progress" unless finished_at
+    return "error" if fail?
     total
   end
 end

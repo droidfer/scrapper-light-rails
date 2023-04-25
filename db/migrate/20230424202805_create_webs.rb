@@ -5,6 +5,7 @@ class CreateWebs < ActiveRecord::Migration[7.0]
       t.string :url
       t.date :finished_at
       t.integer :total
+      t.integer :status , default: 0 
 
       t.timestamps
     end
