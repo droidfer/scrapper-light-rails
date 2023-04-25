@@ -1,0 +1,44 @@
+<p style="color: green"><%= notice %></p>
+
+<h1>Webs</h1>
+
+<%= form_tag(:controller => 'webs', :action =>'create', :method => 'post') do %>
+  <input
+    name="url" type="string"
+  />
+  
+  <%= submit_tag 'Scrape' %> <br>
+
+<% end %>
+
+<div id="webs">
+  
+    <table>
+      <thead>
+        <tr>
+          <th>Name</th>
+          <th>Total Links</th>
+        </tr>
+      </thead>
+      
+      <tbody>
+      <% @webs.each do |web| %>
+        <tr>
+          <td>
+          <% if web.name%>
+              <%= link_to web.name, web_path(web) %>
+          <% else %>
+              <%= link_to "No Title: #{web.url}", web_path(web) %>
+          <% end %>
+          </td>
+          
+          <td> <%= web.total %></td>
+        </tr>
+      <% end %>
+      </tbody> 
+    </table>
+    
+    <%= paginate @webs%>
+</div>
+
+

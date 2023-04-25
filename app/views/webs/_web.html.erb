@@ -1,0 +1,32 @@
+<div id="<%= dom_id web %>">
+  <p>
+    <strong>Name:</strong>
+    <%= web.name %>
+  </p>
+  
+  <table>
+    <thead>
+    <tr>
+      <th>Name</th>
+      <th>Url</th>
+    </tr>
+    </thead>
+    
+    <tbody>
+    <% @weblinks.each do |web| %>
+      <tr>        
+        <td>
+          <% if web.name != nil%>
+            <%= web.name %>
+          <% else %>
+            No Title
+          <% end %>
+        </td>
+        <td> <%= web.url %> </td>
+      </tr>
+    <% end %>
+    </tbody>
+  </table>
+  
+  <%= paginate @weblinks%>
+</div>
