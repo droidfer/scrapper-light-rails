@@ -25,11 +25,7 @@
       <% @webs.each do |web| %>
         <tr>
           <td>
-          <% if web.name%>
-              <%= link_to web.name, web_path(web) %>
-          <% else %>
-              <%= link_to "No Title: #{web.url}", web_path(web) %>
-          <% end %>
+            <%= link_to web.display_name, web_path(web) %>
           </td>
           
           <td> <%= web.total %></td>

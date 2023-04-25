@@ -15,13 +15,7 @@
     <tbody>
     <% @weblinks.each do |web| %>
       <tr>        
-        <td>
-          <% if web.name != nil%>
-            <%= web.name %>
-          <% else %>
-            No Title
-          <% end %>
-        </td>
+        <td> <%= web.display_name %> </td>
         <td> <%= web.url %> </td>
       </tr>
     <% end %>

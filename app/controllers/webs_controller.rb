@@ -25,15 +25,7 @@ class WebsController < ApplicationController
 
     respond_to do |format|
       if @web.save
-        
-        begin
-          service = WebScrapper.new(@web.id)
-          service.execute
-        rescue
-          @web.destroy
-          format.html { redirect_to webs_path, notice: "System couldn't find the url." }
-        end
-        
+        ScrapperJob.perform_later(@web.id)
         format.html { redirect_to webs_path, notice: "Web set in process." }
       else
         format.html { redirect_to webs_path, notice: "Problem in Generation." }
