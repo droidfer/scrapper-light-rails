@@ -1,21 +1,15 @@
 <p style="color: green"><%= notice %></p>
 
-<h1>Webs</h1>
-
 <%= form_with(model: @web) do |form| %>
-  <div>
-    <%= form.label :name, style: "display: block" %>
-    <%= form.text_field :url %>
-  </div>
-  
-  <div>
-    <%= form.submit "Scrape"%>
+  <div class="mb-3">
+    <%= form.text_field :url, placeholder: "Add new page" %>
+    <%= form.submit "Scrape" , class: 'btn btn-secondary'%>
   </div>
 <% end %>
 
 <div id="webs">
   
-    <table>
+    <table class="table table-hover">
       <thead>
         <tr>
           <th>Name</th>

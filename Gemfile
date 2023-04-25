@@ -60,3 +60,5 @@ group :development do
   # gem "spring"
 end
 
+
+gem "cssbundling-rails", "~> 1.1"

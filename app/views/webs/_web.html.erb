@@ -1,10 +1,9 @@
 <div id="<%= dom_id web %>">
-  <p>
-    <strong>Name:</strong>
-    <%= web.name %>
-  </p>
+  <h1> <%= web.name %> </h1>
   
-  <table>
+  <%= link_to '< Back', webs_path %>
+  
+  <table class="table table-hover">
     <thead>
     <tr>
       <th>Name</th>
